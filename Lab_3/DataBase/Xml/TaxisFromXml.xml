@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Taxis>
+	<Taxi>
+		<EngineId>00000</EngineId>
+		<BodyId>0</BodyId>
+	</Taxi>
+	<Taxi>
+		<EngineId>00001</EngineId>
+		<BodyId>1</BodyId>
+	</Taxi>
+	<Taxi>
+		<EngineId>00002</EngineId>
+		<BodyId>2</BodyId>
+	</Taxi>
+	<Taxi>
+		<EngineId>00003</EngineId>
+		<BodyId>3</BodyId>
+	</Taxi>
+	<Taxi>
+		<EngineId>00000</EngineId>
+		<BodyId>2</BodyId>
+	</Taxi>
+	<Taxi>
+		<EngineId>00003</EngineId>
+		<BodyId>1</BodyId>
+	</Taxi>
+	
+	
+	<Taxi>
+		<EngineId>00009</EngineId>
+		<BodyId>30</BodyId>
+	</Taxi>
+</Taxis>

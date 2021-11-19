@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BudgetBodies>
+	<Body>
+		<Id>2</Id>
+		<Number>1231 OU-1</Number>
+		<Cost>1200</Cost>
+		<Seats>3</Seats>
+	</Body>
+	<Body>
+		<Id>3</Id>
+		<Number>9976 CL-3</Number>
+		<Cost>1400</Cost>
+		<Seats>3</Seats>
+	</Body>
+</BudgetBodies>

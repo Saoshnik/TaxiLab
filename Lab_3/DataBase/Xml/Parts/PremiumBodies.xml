@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PremiumBodies>
+	<Body>
+		<Id>0</Id>
+		<Number>6426 TE-1</Number>
+		<Cost>2000</Cost>
+		<Seats>3</Seats>
+	</Body>
+	<Body>
+		<Id>1</Id>
+		<Number>4848 VB-8</Number>
+		<Cost>2600</Cost>
+		<Seats>3</Seats>
+	</Body>
+</PremiumBodies>
+

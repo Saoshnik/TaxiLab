@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PremiumEngines>
+	<Engine>
+		<Id>00000</Id>
+		<Copyrights>Subaru</Copyrights>
+		<FuelConsumption>6.8</FuelConsumption>
+		<Cost>700</Cost>
+		<Speed>120</Speed>
+	</Engine>
+	<Engine>
+		<Id>00001</Id>
+		<Copyrights>Volvo</Copyrights>
+		<FuelConsumption>7.7</FuelConsumption>
+		<Cost>900</Cost>
+		<Speed>130</Speed>
+	</Engine>
+</PremiumEngines>
