@@ -17,12 +17,12 @@ namespace Lab_3.InterfaceImplementers
         public int Id { get; private set; }
         public void SetId(int id) { Id = id; }
 
-        public new string ToString() // две переменные (part, temp) // какой тип(работать будет со всеми) // var или string
+        public new string ToString()
         {
             var temp = string.Empty;
             foreach (var item in Parts)
             {
-                string part = string.Empty;
+                var part = string.Empty;
                 if ((item as Engine) != null) { part = item.ToString(); }
                 else if ((item as Body) != null) { part = item.ToString(); }
 
