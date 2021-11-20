@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using Lab_3.InterfaceImplementers;
 using Lab_3.InterfaceImplementers.Parts.Engines;
@@ -34,10 +33,10 @@ namespace Lab_3.DataBase
             PremiumBodies = ProcessBodies(Serializer.Deserialize(DefaultPaths.PREMIUMBODIESPATH, PremiumBodies));
             BudgetBodies = ProcessBodies(Serializer.Deserialize(DefaultPaths.BUDGETBODIESPATH, BudgetBodies));
 
-            foreach (var item in PremiumEngines) Engines.Add(item);
-            foreach (var item in BudgetEngines) Engines.Add(item);
-            foreach (var item in PremiumBodies) Bodies.Add(item);
-            foreach (var item in BudgetBodies) Bodies.Add(item);
+            Engines.AddRange(PremiumEngines);
+            Engines.AddRange(BudgetEngines);
+            Bodies.AddRange(PremiumBodies);
+            Bodies.AddRange(BudgetBodies);
 
             List<Part> parts = new List<Part>();
             parts.AddRange(Engines);
