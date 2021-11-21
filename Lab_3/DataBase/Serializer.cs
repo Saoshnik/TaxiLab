@@ -11,20 +11,24 @@ namespace Lab_3.DataBase
             FileStream fs = new FileStream(path, FileMode.Open);
             var s = new XmlSerializer(typeof(T));
             list = (T)s.Deserialize(fs);
+            fs.Close();
         }
-        public static T Deserialize<T>(string path, T list)
+        public static T Deserialize<T>(string path)
         {
             FileStream fs = new FileStream(path, FileMode.Open);
             var s = new XmlSerializer(typeof(T));
-            return list = (T)s.Deserialize(fs);
+            T tmp = (T)s.Deserialize(fs);
+            fs.Close();
+            return tmp;
         }
 
         // можно ли сериализовать TaxiFromXml в Taxi автоматически
         public static void Serialize<T>(string path, T list)
         {
-            FileStream fs = new FileStream(path, FileMode.Open);
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
             var s = new XmlSerializer(typeof(T));
             s.Serialize(fs, list);
+            fs.Close();
         }
     }
 }

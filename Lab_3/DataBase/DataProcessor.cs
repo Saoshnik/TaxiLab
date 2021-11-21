@@ -4,46 +4,23 @@ using Lab_3.InterfaceImplementers;
 using Lab_3.InterfaceImplementers.Parts.Engines;
 using Lab_3.InterfaceImplementers.Parts.Bodies;
 using Lab_3.InterfaceImplementers.Parts;
+using System;
 
 namespace Lab_3.DataBase
 {
-    // c обработкой nullReferenceEx
-    class DataProcessor
+    // c об работкой nullReferenceEx
+    static class DataProcessor
     {
-        // Engines и PremiumEngines, BudgetEngines содержат разные экзмплеры
-        public static List<Taxi> Taxis { get; private set; }
-        public static List<TaxiFromXml> TaxisFromXml { get; private set; }
+        public static List<TaxiFromXml> TaxisFromXml { get; set; } = ProcessTaxisFromXml(Serializer.Deserialize<List<TaxiFromXml>>(DefaultPaths.TAXISFROMXMLPATH));
 
-        #region mbDelete
-        public static List<Engine> Engines { get; private set; }
-        public static List<Body> Bodies { get; private set; }
-        #endregion // end mbDelete
+        public static List<Engine> PremiumEngines { get; set; } = PremiumEngines.AddRange(ProcessEngines(Serializer.Deserialize<List<PremiumEngine>>(DefaultPaths.PREMIUMENGINESPATH)));
+        public static List<Engine> BudgetEngines { get; set; } = ProcessEngines(Serializer.Deserialize<List<BudgetEngine>>(DefaultPaths.BUDGETENGINESPATH));
+        public static List<Body> PremiumBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<PremiumBody>>(DefaultPaths.PREMIUMBODIESPATH));
+        public static List<Body> BudgetBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<BudgetBody>>(DefaultPaths.BUDGETBODIESPATH));
 
-        public static List<Engine> PremiumEngines { get; set; }
-        public static List<Engine> BudgetEngines { get; private set; }
-        public static List<Body> PremiumBodies { get; private set; }
-        public static List<Body> BudgetBodies { get; private set; }
+        // how to use List<T>.AddRange() here
+        public static List<Taxi> Taxis { get; set; } = MakeTaxis(TaxisFromXml, new List<Part>(PremiumEngines).Concat(BudgetEngines).Concat(PremiumBodies).Concat(BudgetBodies).ToList());
 
-        public DataProcessor() { }
-        static DataProcessor()
-        {
-            TaxisFromXml = Serializer.Deserialize(DefaultPaths.TAXISFROMXMLPATH, TaxisFromXml);
-            PremiumEngines = ProcessEngines(Serializer.Deserialize(DefaultPaths.PREMIUMENGINESPATH, PremiumEngines));
-            BudgetEngines = ProcessEngines(Serializer.Deserialize(DefaultPaths.BUDGETENGINESPATH, BudgetEngines));
-            PremiumBodies = ProcessBodies(Serializer.Deserialize(DefaultPaths.PREMIUMBODIESPATH, PremiumBodies));
-            BudgetBodies = ProcessBodies(Serializer.Deserialize(DefaultPaths.BUDGETBODIESPATH, BudgetBodies));
-
-            Engines.AddRange(PremiumEngines);
-            Engines.AddRange(BudgetEngines);
-            Bodies.AddRange(PremiumBodies);
-            Bodies.AddRange(BudgetBodies);
-
-            List<Part> parts = new List<Part>();
-            parts.AddRange(Engines);
-            parts.AddRange(Bodies);
-
-            Taxis = MakeTaxis(TaxisFromXml, parts);
-        }
 
         // переделать под Type type; type.GetFields() + check:рефлексия
         public static List<Engine> ProcessEngines(List<Engine> list)
@@ -91,16 +68,6 @@ namespace Lab_3.DataBase
             return processList;
         }
 
-        public static List<Engine> GetProcessEngines(string path) { return ProcessEngines(Serializer.Deserialize(path, new List<Engine>())); }
-        public static List<Body> GetProcessBodies(string path) { return ProcessBodies(Serializer.Deserialize(path, new List<Body>())); }
-        public static List<Taxi> GetTaxis(string path) {
-            List<Part> parts = new List<Part>();
-            parts.AddRange(GetProcessEngines(path)); 
-            parts.AddRange(GetProcessBodies(path));
-            // Десериализация -> Обработка -> Сборка
-            return MakeTaxis(ProcessTaxisFromXml(Serializer.Deserialize(path, new List<TaxiFromXml>())), parts);
-        }
-
         // сборка taxi, если не работает, можно попробовать внести данные в xml о том какого типа Premium or Budget там находится
         /* private, пользователь работает с GetTaxis */
         private static List<Taxi> MakeTaxis(List<TaxiFromXml> taxisFromXml, List<Part> parts)
@@ -112,11 +79,29 @@ namespace Lab_3.DataBase
                 foreach (var part in parts)
                 {
                     if ((part as Engine) != null && taxiFromXml.EngineId == part.Id) taxi.Parts.Add(part);
-                    else if((part as Body) != null && taxiFromXml.BodyId == part.Id) taxi.Parts.Add(part);   
+                    else if ((part as Body) != null && taxiFromXml.BodyId == part.Id) taxi.Parts.Add(part);
                 }
                 if (taxi.Parts.Any()) { taxi.SetId(taxiFromXml.TaxiId); taxis.Add(taxi); }
             }
             return taxis;
         }
+
+        // переделать под Type type; type.GetFields() + check:рефлексия
+        public static List<Taxi> GetTaxis(string path) {
+            var engines = new List<Engine>();
+            var bodies = new List<Body>();
+            
+            Serializer.Deserialize(path, ref engines);
+            Serializer.Deserialize(path, ref bodies);
+            
+            List<Part> parts = new List<Part>();
+            parts.AddRange(engines); 
+            parts.AddRange(bodies);
+            // Десериализация -> Обработка -> Сборка
+            return MakeTaxis(ProcessTaxisFromXml(Serializer.Deserialize<List<TaxiFromXml>>(path)), parts);
+        }
+
+        
+        private static void AddToEngines() { }
     }
 }

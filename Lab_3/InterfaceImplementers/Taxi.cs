@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Collections.Generic;
 using Lab_3.InterfaceImplementers.Parts.Engines;
 using Lab_3.InterfaceImplementers.Parts.Bodies;
 using Lab_3.Interfaces;
@@ -8,7 +6,6 @@ using Lab_3.InterfaceImplementers.Parts;
 
 namespace Lab_3.InterfaceImplementers
 {
-    [Serializable]
     class Taxi : ITaxi
     {
         // нужен ли метод Add

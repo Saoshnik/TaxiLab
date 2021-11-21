@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab_3.InterfaceImplementers.Parts.Bodies
 {
     [Serializable]
-    class PremiumBody : Part
+    public class PremiumBody : Part
     {
         public PremiumBody() { }
         public PremiumBody(Part part) : base(part) { }

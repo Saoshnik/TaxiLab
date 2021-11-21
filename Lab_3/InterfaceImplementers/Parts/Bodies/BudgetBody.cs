@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab_3.InterfaceImplementers.Parts.Bodies
 {
     [Serializable]
-    class BudgetBody : Part
+    public class BudgetBody : Part
     {
         public BudgetBody() { }
         public BudgetBody(Part part) : base(part) { }

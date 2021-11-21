@@ -3,10 +3,10 @@
 namespace Lab_3.InterfaceImplementers.Parts.Engines
 {
     [Serializable]
-    class BudgetEngine : Part
+    public class BudgetEngine : Part
     {
         public BudgetEngine() { }
-        public BudgetEngine(Part part) { Id = part.Id; Cost = part.Cost; }
+        public BudgetEngine(Part part) : base(part) { }
 
         public double FuelConsumption { get; set; }
         public string Copyrights { get; set; }

@@ -4,7 +4,7 @@ using Lab_3.Interfaces;
 namespace Lab_3.InterfaceImplementers.Parts.Engines
 {
     [Serializable]
-    abstract class Engine : Part, IEngine
+    public abstract class Engine : Part, IEngine
     {
         public double FuelConsumption { get; set; }
         public string Copyrights { get; set; }
