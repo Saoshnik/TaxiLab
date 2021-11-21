@@ -9,11 +9,11 @@ namespace Lab_3
     {
         static void Main(string[] args)
         {
-            List<Taxi> otherTaxis = new List<Taxi>();
-            otherTaxis = DataProcessor.Taxis;
+            List<TaxiFromXml> otherTaxis = new List<TaxiFromXml>();
+            otherTaxis = DataProcessor.TaxisFromXml;
             foreach (var item in otherTaxis) item.ToString();
 
-
+            
             List<Taxi> taxis = new List<Taxi>(DataProcessor.Taxis);
             foreach (var item in taxis) item.ToString();
         }
