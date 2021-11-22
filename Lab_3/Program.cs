@@ -26,7 +26,7 @@ namespace Lab_3
 
 
 
-            foreach (var item in DataProcessor.PremiumEngines) item.ToString();
+            foreach (var item in DataProcessor.Taxis) Console.WriteLine($"{item.ToString()}");
             Console.WriteLine();
         }
     }

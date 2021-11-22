@@ -10,12 +10,12 @@ namespace Lab_3.DataBase
     // c об работкой nullReferenceEx
     static class DataProcessor
     {
-        public static List<TaxiFromXml> TaxisFromXml { get; set; }
+        public static List<TaxiFromXml> TaxisFromXml { get; set; } = new List<TaxiFromXml>();
 
-        public static List<Engine> PremiumEngines { get; set; }
-        public static List<Engine> BudgetEngines { get; set; }
-        public static List<Body> PremiumBodies { get; set; }
-        public static List<Body> BudgetBodies { get; set; }
+        public static List<Engine> PremiumEngines { get; set; } = new List<Engine>();
+        public static List<Engine> BudgetEngines { get; set; } = new List<Engine>();
+        public static List<Body> PremiumBodies { get; set; } = new List<Body>();
+        public static List<Body> BudgetBodies { get; set; } = new List<Body>();
 
         public static List<Taxi> Taxis { get; set; }
 
@@ -33,11 +33,16 @@ namespace Lab_3.DataBase
             Serializer.Deserialize(DefaultPaths.PREMIUMBODIESPATH, ref premiumBodies);
             Serializer.Deserialize(DefaultPaths.BUDGETBODIESPATH, ref budgetBodies);
 
+            foreach (var item in premiumEngines) PremiumEngines.Add(item);
+            foreach (var item in budgetEngines) BudgetEngines.Add(item);
+            foreach (var item in premiumBodies) PremiumBodies.Add(item);
+            foreach (var item in budgetBodies) BudgetBodies.Add(item);
+
             TaxisFromXml = ProcessTaxisFromXml(taxisFromXml);
-            PremiumEngines = ProcessEngines(premiumEngines);
-            BudgetEngines = ProcessBodies(budgetEngines);
-            PremiumBodies = ProcessEngines(premiumBodies);
-            BudgetBodies = ProcessBodies(budgetBodies);
+            PremiumEngines = ProcessEngines(PremiumEngines);
+            BudgetEngines = ProcessEngines(BudgetEngines);
+            PremiumBodies = ProcessBodies(PremiumBodies);
+            BudgetBodies = ProcessBodies(BudgetBodies);
 
             // how to use List<T>.AddRange() here
             Taxis = MakeTaxis(TaxisFromXml, new List<Part>(PremiumEngines).Concat(BudgetEngines).Concat(PremiumBodies).Concat(BudgetBodies).ToList());
@@ -97,6 +102,7 @@ namespace Lab_3.DataBase
             foreach (var taxiFromXml in taxisFromXml)
             {
                 var taxi = new Taxi();
+                taxi.Parts = new List<Part>(); // почему без этой записи Exception ??
                 foreach (var part in parts)
                 {
                     if ((part as Engine) != null && taxiFromXml.EngineId == part.Id) taxi.Parts.Add(part);
