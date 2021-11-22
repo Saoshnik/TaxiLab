@@ -19,13 +19,12 @@ namespace Lab_3.InterfaceImplementers
             var temp = string.Empty;
             foreach (var item in Parts)
             {
-                var part = string.Empty;
-                if ((item as Engine) != null) { part = item.ToString(); }
-                else if ((item as Body) != null) { part = item.ToString(); }
-
-                if (part != null) temp = $"TaxiCost: {Cost}\n{part}";
+                if ((item as Engine) != null) { temp += $"{item.ToString()}"; }
+                else if ((item as Body) != null) { temp += $"{item.ToString()}"; }
             }
-            return temp;
+
+            if (temp != null) return $"Taxi ID: {Id}\nTaxiCost: {Cost}\n{temp}";
+            else return temp;
         }
     }
 }

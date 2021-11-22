@@ -8,13 +8,13 @@ namespace Lab_3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            List<TaxiFromXml> tmp1 = new();
-            List<PremiumEngine> tmp2 = new();
-            List<BudgetEngine> tmp3 = new();
-            List<PremiumBody> tmp4 = new();
-            List<BudgetBody> tmp5 = new();
+            //List<TaxiFromXml> tmp1 = new();
+            //List<PremiumEngine> tmp2 = new();
+            //List<BudgetEngine> tmp3 = new();
+            //List<PremiumBody> tmp4 = new();
+            //List<BudgetBody> tmp5 = new();
 
 
 

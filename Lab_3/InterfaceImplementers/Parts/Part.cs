@@ -12,6 +12,6 @@ namespace Lab_3.InterfaceImplementers.Parts
         public int Cost { get; set; }
         public int Id { get; set; }
 
-        public new string ToString() { return $"{GetType().Name}\nCost: {Cost}"; } // new or override
+        public new string ToString() { return $"{GetType().Name}\nPartCost: {Cost}\n"; } // new or override
     }
 }
