@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_3.InterfaceImplementers.Parts.Bodies
 {
     [Serializable]
-    public class BudgetBody : Part
+    public class BudgetBody : Body
     {
         public BudgetBody() { }
-        public BudgetBody(Part part) : base(part) { }
+        public BudgetBody(BudgetBody body) : base(body) { }
 
-        public string Number { get; set; }
-        public int Seats { get; set; }
-
-        public string Doors() { return $"Tu-Duf!"; }
+        public override string Doors() { return $"Tu-Duf!"; }
     }
 }

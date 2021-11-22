@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_3.InterfaceImplementers.Parts.Bodies
 {
     [Serializable]
-    public class PremiumBody : Part
+    public class PremiumBody : Body
     {
         public PremiumBody() { }
-        public PremiumBody(Part part) : base(part) { }
+        public PremiumBody(Body body) : base(body) { }
 
-        public string Number { get; set; }
-        public int Seats { get; set; }
-
-        public string Doors() { return $"tuf"; }
+        public override string Doors() { return $"tuf"; }
     }
 }

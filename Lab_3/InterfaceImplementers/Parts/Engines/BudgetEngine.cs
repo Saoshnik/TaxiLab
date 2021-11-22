@@ -3,15 +3,11 @@
 namespace Lab_3.InterfaceImplementers.Parts.Engines
 {
     [Serializable]
-    public class BudgetEngine : Part
+    public class BudgetEngine : Engine
     {
         public BudgetEngine() { }
-        public BudgetEngine(Part part) : base(part) { }
+        public BudgetEngine(BudgetEngine engine) : base(engine) { }
 
-        public double FuelConsumption { get; set; }
-        public string Copyrights { get; set; }
-        public int Speed { get; set; }
-
-        public string Move() { return $"Brrbrrrbrrrr"; }
+        public override string Move() { return $"Brrbrrrbrrrr"; }
     }
 }

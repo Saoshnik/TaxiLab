@@ -13,7 +13,7 @@ namespace Lab_3.DataBase
     {
         public static List<TaxiFromXml> TaxisFromXml { get; set; } = ProcessTaxisFromXml(Serializer.Deserialize<List<TaxiFromXml>>(DefaultPaths.TAXISFROMXMLPATH));
 
-        public static List<Engine> PremiumEngines { get; set; } = PremiumEngines.AddRange(ProcessEngines(Serializer.Deserialize<List<PremiumEngine>>(DefaultPaths.PREMIUMENGINESPATH)));
+        public static List<Engine> PremiumEngines { get; set; } = (ProcessEngines(Serializer.Deserialize<List<PremiumEngine>>(DefaultPaths.PREMIUMENGINESPATH)));
         public static List<Engine> BudgetEngines { get; set; } = ProcessEngines(Serializer.Deserialize<List<BudgetEngine>>(DefaultPaths.BUDGETENGINESPATH));
         public static List<Body> PremiumBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<PremiumBody>>(DefaultPaths.PREMIUMBODIESPATH));
         public static List<Body> BudgetBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<BudgetBody>>(DefaultPaths.BUDGETBODIESPATH));
