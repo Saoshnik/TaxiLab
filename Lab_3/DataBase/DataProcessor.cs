@@ -4,23 +4,44 @@ using Lab_3.InterfaceImplementers;
 using Lab_3.InterfaceImplementers.Parts.Engines;
 using Lab_3.InterfaceImplementers.Parts.Bodies;
 using Lab_3.InterfaceImplementers.Parts;
-using System;
 
 namespace Lab_3.DataBase
 {
     // c об работкой nullReferenceEx
     static class DataProcessor
     {
-        public static List<TaxiFromXml> TaxisFromXml { get; set; } = ProcessTaxisFromXml(Serializer.Deserialize<List<TaxiFromXml>>(DefaultPaths.TAXISFROMXMLPATH));
+        public static List<TaxiFromXml> TaxisFromXml { get; set; }
 
-        public static List<Engine> PremiumEngines { get; set; } = (ProcessEngines(Serializer.Deserialize<List<PremiumEngine>>(DefaultPaths.PREMIUMENGINESPATH)));
-        public static List<Engine> BudgetEngines { get; set; } = ProcessEngines(Serializer.Deserialize<List<BudgetEngine>>(DefaultPaths.BUDGETENGINESPATH));
-        public static List<Body> PremiumBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<PremiumBody>>(DefaultPaths.PREMIUMBODIESPATH));
-        public static List<Body> BudgetBodies { get; set; } = ProcessBodies(Serializer.Deserialize<List<BudgetBody>>(DefaultPaths.BUDGETBODIESPATH));
+        public static List<Engine> PremiumEngines { get; set; }
+        public static List<Engine> BudgetEngines { get; set; }
+        public static List<Body> PremiumBodies { get; set; }
+        public static List<Body> BudgetBodies { get; set; }
 
-        // how to use List<T>.AddRange() here
-        public static List<Taxi> Taxis { get; set; } = MakeTaxis(TaxisFromXml, new List<Part>(PremiumEngines).Concat(BudgetEngines).Concat(PremiumBodies).Concat(BudgetBodies).ToList());
+        public static List<Taxi> Taxis { get; set; }
 
+        static DataProcessor()
+        {
+            var taxisFromXml = new List<TaxiFromXml>();
+            var premiumEngines = new List<PremiumEngine>();
+            var budgetEngines = new List<BudgetEngine>();
+            var premiumBodies = new List<PremiumBody>();
+            var budgetBodies = new List<BudgetBody>();
+
+            Serializer.Deserialize(DefaultPaths.TAXISFROMXMLPATH, ref taxisFromXml);
+            Serializer.Deserialize(DefaultPaths.PREMIUMENGINESPATH, ref premiumEngines);
+            Serializer.Deserialize(DefaultPaths.BUDGETENGINESPATH, ref budgetEngines);
+            Serializer.Deserialize(DefaultPaths.PREMIUMBODIESPATH, ref premiumBodies);
+            Serializer.Deserialize(DefaultPaths.BUDGETBODIESPATH, ref budgetBodies);
+
+            TaxisFromXml = ProcessTaxisFromXml(taxisFromXml);
+            PremiumEngines = ProcessEngines(premiumEngines);
+            BudgetEngines = ProcessBodies(budgetEngines);
+            PremiumBodies = ProcessEngines(premiumBodies);
+            BudgetBodies = ProcessBodies(budgetBodies);
+
+            // how to use List<T>.AddRange() here
+            Taxis = MakeTaxis(TaxisFromXml, new List<Part>(PremiumEngines).Concat(BudgetEngines).Concat(PremiumBodies).Concat(BudgetBodies).ToList());
+        }
 
         // переделать под Type type; type.GetFields() + check:рефлексия
         public static List<Engine> ProcessEngines(List<Engine> list)
@@ -87,21 +108,19 @@ namespace Lab_3.DataBase
         }
 
         // переделать под Type type; type.GetFields() + check:рефлексия
-        public static List<Taxi> GetTaxis(string path) {
+        public static List<Taxi> GetTaxis(string path)
+        {
             var engines = new List<Engine>();
             var bodies = new List<Body>();
-            
+
             Serializer.Deserialize(path, ref engines);
             Serializer.Deserialize(path, ref bodies);
-            
+
             List<Part> parts = new List<Part>();
-            parts.AddRange(engines); 
+            parts.AddRange(engines);
             parts.AddRange(bodies);
             // Десериализация -> Обработка -> Сборка
             return MakeTaxis(ProcessTaxisFromXml(Serializer.Deserialize<List<TaxiFromXml>>(path)), parts);
         }
-
-        
-        private static void AddToEngines() { }
     }
 }
