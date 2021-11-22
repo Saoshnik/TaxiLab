@@ -10,7 +10,7 @@ namespace Lab_3.DataBase
     // c об работкой nullReferenceEx
     static class DataProcessor
     {
-        public static List<TaxiFromXml> TaxisFromXml { get; set; } = new List<TaxiFromXml>();
+        private static List<TaxiFromXml> TaxisFromXml { get; set; } = new List<TaxiFromXml>();
 
         public static List<Engine> PremiumEngines { get; set; } = new List<Engine>();
         public static List<Engine> BudgetEngines { get; set; } = new List<Engine>();

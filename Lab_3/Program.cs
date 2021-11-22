@@ -10,14 +10,6 @@ namespace Lab_3
     {
         static void Main()
         {
-            //List<TaxiFromXml> tmp1 = new();
-            //List<PremiumEngine> tmp2 = new();
-            //List<BudgetEngine> tmp3 = new();
-            //List<PremiumBody> tmp4 = new();
-            //List<BudgetBody> tmp5 = new();
-
-
-
             //Serializer.Deserialize(DefaultPaths.TAXISFROMXMLPATH, ref tmp1);
             //Serializer.Deserialize(DefaultPaths.PREMIUMENGINESPATH, ref tmp2);
             //var value = Serializer.Deserialize<List<BudgetEngine>>(DefaultPaths.BUDGETENGINESPATH);

@@ -1,5 +1,4 @@
 v 1.0
-2. Реализовать GetData() возвращающие отдельные типы: List<BudgetEngine>, List<PremiumCar>... ( c помощью Enum, на подобие Category.Attributes.GetNamedItem("PremiumTaxi") передавая запрос)
 6. В конце добавить вопрос о перезаписи файла xml с конфигурациями всех Taxi
 
 v 4.0

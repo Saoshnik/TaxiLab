@@ -8,7 +8,7 @@ namespace Lab_3.InterfaceImplementers
 {
     class Taxi : ITaxi
     {
-        // нужен ли метод Add
+        // нужен ли метод AddPart?
         public List<Part> Parts { get; set; }
         public int Cost { get { int temp = 0; foreach (var item in Parts) temp += item.Cost; return temp; } }
         public int Id { get; private set; }
