@@ -14,6 +14,6 @@ namespace Lab_3.InterfaceImplementers.Parts.Engines
         public int Speed { get; set; }
 
         public abstract string Move();
-        public new string ToString() { return $"{base.ToString()}Copyrights: {Copyrights}\nSpeed: {Speed}\nFuelConsumption: {FuelConsumption}"; }
+        public new string ToString() { return $"Copyrights: {Copyrights}\nSpeed: {Speed}\nFuelConsumption: {FuelConsumption}\n"; }
     }
 }

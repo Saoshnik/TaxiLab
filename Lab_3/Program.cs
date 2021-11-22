@@ -26,10 +26,8 @@ namespace Lab_3
 
 
 
-            foreach (var taxi in DataProcessor.Taxis)
-                foreach (var part in taxi.Parts)
-                    if ((part as Engine) != null) Console.WriteLine(((Engine)part).ToString());
-                    else if ((part as Body) != null) Console.WriteLine(((Body)part).ToString());
+            Console.WriteLine("\n\n");
+            foreach (var item in DataProcessor.Taxis) Console.WriteLine($"{item.ToString()}");
         }
     }
 }

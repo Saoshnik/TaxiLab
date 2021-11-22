@@ -23,7 +23,7 @@ namespace Lab_3.InterfaceImplementers
                 else if ((item as Body) != null) { temp += $"{item.ToString()}"; }
             }
 
-            if (temp != null) return $"Taxi ID: {Id}\nTaxiCost: {Cost}\n{temp}";
+            if (temp != null) return $"<< {GetType().Name} >>\nTaxi ID: {Id}\nTaxiCost: {Cost}\n{temp}";
             else return temp;
         }
     }

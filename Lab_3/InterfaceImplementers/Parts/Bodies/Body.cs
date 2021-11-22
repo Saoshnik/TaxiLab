@@ -13,6 +13,6 @@ namespace Lab_3.InterfaceImplementers.Parts.Bodies
         public string Number { get; set; }
 
         public abstract string Doors();
-        public new string ToString() { return $"{base.ToString()}Number: {Number}\nSeats: {Seats}"; }
+        public new string ToString() { return $"Number: {Number}\nSeats: {Seats}\n"; }
     }
 }
